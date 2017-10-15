@@ -28,7 +28,7 @@ def is_plt(img):
 
 img = cv2.imread("./images/1.tif",0)
 img = rn.full_image(img) #improve quality
-#is_plt(img)#showing preprocessing
+is_plt(img)#showing preprocessing
 
 squares = rect_detec.find_squares(img) #find the squares
 img_rot = rotate.correct_rotate(img, squares) #rotate the image
