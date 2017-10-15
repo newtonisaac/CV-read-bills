@@ -32,7 +32,7 @@ def find_squares(img):
     """
     squares = []
     bin, contours, _hierarchy = cv2.findContours(img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-    for thrs in range(26, 255, 26):
+    for thrs in range(0, 255, 25):
         if thrs == 0:
             bin = cv2.Canny(img, 0, 50, apertureSize=5)
             bin = cv2.dilate(bin, None)
@@ -79,8 +79,8 @@ def remove_big_rect(squares):
     for i in ord_squares:
         for j in range(len(new_squares)):
             rect = new_squares[j]
-            if rect[0][0] <= i[0][0] and rect[0][1] <= i[0][1]:
-                if rect[2][0] >= i[2][0] and rect[2][1] >= i[2][1]:
+            if rect[0][0] < i[0][0] and rect[0][1] < i[0][1]:
+                if rect[2][0] > i[2][0] and rect[2][1] > i[2][1]:
                     new_squares.pop(j)
                     break
     return new_squares

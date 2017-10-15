@@ -26,9 +26,7 @@ def is_plt(img):
     plt.show()
 
 
-img = cv2.imread("./images/1.tif",0)
-img = rn.full_image(img) #improve quality
-is_plt(img)#showing preprocessing
+img = cv2.imread("./images/3.tif",0) # images of 0 to 10 .tif
 
 squares = rect_detec.find_squares(img) #find the squares
 img_rot = rotate.correct_rotate(img, squares) #rotate the image
@@ -36,9 +34,10 @@ ind_big = rect_detec.find_biggest(img, squares)  #find biggest square
 img_rgb = rect_detec.draw_squares(cv2.cvtColor(img_rot,cv2.COLOR_GRAY2RGB) ,squares, ind_big, 10)#drawing the biggest rect
 is_plt(img_rgb) #showing rotation, the blue mark represent the old position
 
-squares = rect_detec.find_squares(img_rot) #finding new retangles after rotation(can be optmized)
-new_squares = rect_detec.remove_big_rect(squares) #remove the rectangles in excess
-img_rgb = rect_detec.draw_squares(cv2.cvtColor(img_rot,cv2.COLOR_GRAY2RGB) , new_squares, -1, 3)
+new_squares = rect_detec.find_squares(img_rot) #finding new retangles after rotation(can be optmized)
+img = rn.full_image(img_rot) #improve quality
+#new_squares = rect_detec.remove_big_rect(new_squares) #remove the rectangles in excess, decreases the amount of new pictures
+img_rgb = rect_detec.draw_squares(cv2.cvtColor(img,cv2.COLOR_GRAY2RGB) , new_squares, -1, 3)
 is_plt(img_rgb) #showing rectangles detection
 
 #saving the images to fields
