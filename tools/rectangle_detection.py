@@ -26,10 +26,12 @@ def angle_cos(point0, point1, point2):
 
 
 def find_squares(img):
-    """ return a list of coordenates(4 points) of rectagles"""
+    """
+    return a list of coordenates(4 points) of rectagles
+    obs.: range threshold improve the rectangle detection
+    """
     squares = []
-    _retval, bin = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY)
-    bin, contours, _hierarchy = cv2.findContours(bin, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    bin, contours, _hierarchy = cv2.findContours(img, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     for thrs in range(26, 255, 26):
         if thrs == 0:
             bin = cv2.Canny(img, 0, 50, apertureSize=5)
