@@ -1,5 +1,5 @@
 # CV-read-bills
-This project use python 3,openCV 3.3 and numpy
+This project use python 3, openCV 3.3 and numpy
 
 run 'play.py' to show rotation correction, squares detection and create a folder(<fields_imgs>) with the new images of squares
 
